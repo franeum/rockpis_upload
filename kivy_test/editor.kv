@@ -1,0 +1,30 @@
+#:kivy 1.1.0
+
+Root:
+    Button:
+        pos_hint: {"x":0, "top":1}
+        size_hint: 0.25, 0.25
+        text: 'Load Patch'
+        on_release: root.show_load()
+
+
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserIconView:
+            path: '~/.'
+            id: filechooser
+
+        BoxLayout:
+            size_hint_y: None
+            #height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)

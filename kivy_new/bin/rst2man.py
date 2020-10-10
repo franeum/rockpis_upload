@@ -1,4 +1,4 @@
-#!/home/odisseo/Documenti/rockpis_upload/kivy_test/bin/python
+#!/home/neum/Documenti/rockpis_upload/kivy_new/bin/python
 
 # Author:
 # Contact: grubert@users.sf.net

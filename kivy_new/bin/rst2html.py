@@ -1,14 +1,11 @@
-#!/home/odisseo/Documenti/rockpis_upload/kivy_test/bin/python
+#!/home/neum/Documenti/rockpis_upload/kivy_new/bin/python
 
-# $Id: rst2html4.py 7994 2016-12-10 17:41:45Z milde $
+# $Id: rst2html.py 4564 2006-05-21 20:44:42Z wiemann $
 # Author: David Goodger <goodger@python.org>
 # Copyright: This module has been placed in the public domain.
 
 """
-A minimal front end to the Docutils Publisher, producing (X)HTML.
-
-The output conforms to XHTML 1.0 transitional
-and almost to HTML 4.01 transitional (except for closing empty tags).
+A minimal front end to the Docutils Publisher, producing HTML.
 """
 
 try:
@@ -23,4 +20,4 @@ from docutils.core import publish_cmdline, default_description
 description = ('Generates (X)HTML documents from standalone reStructuredText '
                'sources.  ' + default_description)
 
-publish_cmdline(writer_name='html4', description=description)
+publish_cmdline(writer_name='html', description=description)

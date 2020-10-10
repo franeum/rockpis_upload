@@ -1,11 +1,11 @@
-#!/home/odisseo/Documenti/rockpis_upload/kivy_test/bin/python
+#!/home/neum/Documenti/rockpis_upload/kivy_new/bin/python
 
-# $Id: rst2xetex.py 7847 2015-03-17 17:30:47Z milde $
-# Author: Guenter Milde
+# $Id: rst2latex.py 5905 2009-04-16 12:04:49Z milde $
+# Author: David Goodger <goodger@python.org>
 # Copyright: This module has been placed in the public domain.
 
 """
-A minimal front end to the Docutils Publisher, producing Lua/XeLaTeX code.
+A minimal front end to the Docutils Publisher, producing LaTeX.
 """
 
 try:
@@ -17,11 +17,10 @@ except:
 from docutils.core import publish_cmdline
 
 description = ('Generates LaTeX documents from standalone reStructuredText '
-               'sources for compilation with the Unicode-aware TeX variants '
-               'XeLaTeX or LuaLaTeX. '
+               'sources. '
                'Reads from <source> (default is stdin) and writes to '
                '<destination> (default is stdout).  See '
                '<http://docutils.sourceforge.net/docs/user/latex.html> for '
                'the full reference.')
 
-publish_cmdline(writer_name='xetex', description=description)
+publish_cmdline(writer_name='latex', description=description)

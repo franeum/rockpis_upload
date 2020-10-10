@@ -1,4 +1,4 @@
-#!/home/odisseo/Documenti/rockpis_upload/kivy_test/bin/python
+#!/home/neum/Documenti/rockpis_upload/kivy_new/bin/python
 
 # $Id: rst2pseudoxml.py 4564 2006-05-21 20:44:42Z wiemann $
 # Author: David Goodger <goodger@python.org>

@@ -1,24 +1,23 @@
-#!/usr/bin/env python3
-
-"""import os 
+import os 
 
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout 
 from kivy.factory import Factory
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.config import Config
-Config.set('graphics', 'width', '1600')
-Config.set('graphics', 'height', '900')
+Config.set('graphics', 'width', '800')
+Config.set('graphics', 'height', '640')
 Config.set('graphics', 'fullscreen', '0')
 
-class LoadDialog(FloatLayout):
+class LoadDialog(BoxLayout):
     load = ObjectProperty(None)
     cancel = ObjectProperty(None) 
     path = ObjectProperty(None)
 
-class Root(FloatLayout):
+class Root(GridLayout):
     loadfile = ObjectProperty(None)
     #savefile = ObjectProperty(None)
     text_input = ObjectProperty(None)
@@ -45,9 +44,9 @@ class Root(FloatLayout):
 
 
 class Editor(App):
-    pass"""
+    pass
 
-from screen import Editor
 
-if __name__ == '__main__':
-    Editor().run()
+#Factory.register('Root', cls=Root)
+#Factory.register('LoadDialog', cls=LoadDialog)
+#Factory.register('SaveDialog', cls=SaveDialog)

@@ -1,5 +1,5 @@
 import os 
-
+import subprocess 
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -16,6 +16,9 @@ class LoadDialog(BoxLayout):
     load = ObjectProperty(None)
     cancel = ObjectProperty(None) 
     path = ObjectProperty(None)
+
+class ListConnections(BoxLayout):
+    show_conn = ObjectProperty(None) 
 
 class Root(GridLayout):
     loadfile = ObjectProperty(None)
@@ -42,6 +45,17 @@ class Root(GridLayout):
         print(self.filename_to_upload)
         self.dismiss_popup()
 
+    def show_connections(self):
+        content = ListConnections(show_conn=self.connections)
+        self._conn_popup = Popup(title="Choose WiFi connection", content=content,
+                            size_hint=(0.9, 0.9))
+        self._conn_popup.open() 
+
+    def connections(self):
+        result = subprocess.check_output(["nmcli","-f","SSID","dev","wifi"])
+        result = result.decode('utf-8')
+
+        result = result.split('\n')[1:]
 
 class Editor(App):
     pass

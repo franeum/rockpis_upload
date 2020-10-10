@@ -1,7 +1,6 @@
 #:kivy 1.1.0
 
 Root:
-
     #:set fs 24
     #:set bord [5,5,5,5]
     #:set fn 'Roboto-Bold'
@@ -26,6 +25,7 @@ Root:
         font_size: fs
         font_name: fn
         text: 'LOAD PATCH'
+        on_release: root.show_connections()
 
     Button:
         text: 'Load Patch'.upper() 

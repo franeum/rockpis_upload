@@ -1,14 +1,16 @@
 #:kivy 1.9.1
 
 <MyLabel>:
-    #text: '[color=#88e5af][b]' + self.text + '[/b][/color]' #if hasattr(ctx, 'text') else ''
-    #text: '[color=#88e5af][b]' + text + '[/b][/color]'
-    #format_text: '[color=#88e5af][b]' '[/b][/color]'
     font_size: 24
     markup: True
 
 <MyButton@Button>:
     font_size: 22
+
+<SpinnerOption>:
+    #size_hint: None, None
+    background_color: (1,1,1,1)
+    height: 20
 
 <MainBox>:
     orientation: "horizontal"
@@ -20,7 +22,7 @@
         orientation: "vertical"
         MyLabel:
             size_hint_y: 0.05
-            text: root.format_text("Network Config")
+            text: self.format_text("Network Config")
             #font_size: 24
             markup: True
         
@@ -32,11 +34,15 @@
                 markup: True 
                 size_hint_x: 0.25
                 #size_hint_y: 1
-            TextInput:
-                font_size: 20
-                color: [1,0,0,1]
-                size_hint_x: 0.75
-                #size_hint_y: 0.5
+            Spinner:
+                id: spinner_id
+                background_color: (1,1,1,1) 
+                size_hint_x: 1
+                text: 'Home'
+                values: app.networks
+                #on_value:
+                    #print: "The spinner"
+                on_text: root.spinner_clicked(spinner_id.text)
 
         BoxLayout:
             orientation: "horizontal"
@@ -45,16 +51,17 @@
                 text: "Password"
                 markup: True 
                 size_hint_x: 0.25
-                #size_hint_y: 0.5
             TextInput:
+                id: pass_field
                 font_size: 20
                 color: [1,0,0,1]
                 size_hint_x: 0.75
-                #size_hint_y: 0.5
+                on_text: root.print_pwd(pass_field.text)
 
         MyButton:
             size_hint_y: 0.5
             text: "send"
+            on_press: root.credential_send()
     
     BoxLayout:
         orientation: "vertical"

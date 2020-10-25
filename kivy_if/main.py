@@ -20,12 +20,26 @@ kivy.require('1.11.1')
 
 class MainBox(BoxLayout): 
     # For Spinner defining spinner clicked function 
-    def spinner_clicked(self, value): 
+
+    def spinner_clicked(self, value):
+        self.ssid = value  
         print("Language selected is " + value) 
+
+    def print_pwd(self, value):
+        self.pwd = value 
+
+    def credential_send(self):
+        try:
+            print("le credenziali sono: ", self.ssid, self.pwd)
+        except:
+            print("You have to choose a network and tell a password")
 
 class MyLabel(Label):
     def format_text(self, txt):
         return '[color=#88e5af][b]' + txt + '[/b][/color]'
+
+"""class NetPassword(TextInput):
+    self.passwd = """
 
 # define the App class 
 # and just pass rest write on kvfile 

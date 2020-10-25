@@ -1,0 +1,75 @@
+#:kivy 1.9.1
+
+<MyLabel>:
+    #text: '[color=#88e5af][b]' + self.text + '[/b][/color]' #if hasattr(ctx, 'text') else ''
+    #text: '[color=#88e5af][b]' + text + '[/b][/color]'
+    #format_text: '[color=#88e5af][b]' '[/b][/color]'
+    font_size: 24
+    markup: True
+
+<MyButton@Button>:
+    font_size: 22
+
+<MainBox>:
+    orientation: "horizontal"
+
+    BoxLayout:
+        padding: [25,25,25,25]
+        spacing: 10
+        font_size: 24
+        orientation: "vertical"
+        MyLabel:
+            size_hint_y: 0.05
+            text: root.format_text("Network Config")
+            #font_size: 24
+            markup: True
+        
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: 0.1
+            MyLabel:
+                text: "SSID"
+                markup: True 
+                size_hint_x: 0.25
+                #size_hint_y: 1
+            TextInput:
+                font_size: 20
+                color: [1,0,0,1]
+                size_hint_x: 0.75
+                #size_hint_y: 0.5
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: 0.1
+            MyLabel:
+                text: "Password"
+                markup: True 
+                size_hint_x: 0.25
+                #size_hint_y: 0.5
+            TextInput:
+                font_size: 20
+                color: [1,0,0,1]
+                size_hint_x: 0.75
+                #size_hint_y: 0.5
+
+        MyButton:
+            size_hint_y: 0.5
+            text: "send"
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 25
+        padding: [25,25,25,25]
+        MyButton:
+            text: "Update system"
+            font_size: 24
+            markup: True
+            size_hint_y: 0.4
+        BoxLayout:
+            orientation: "vertical"
+            font_size: 48
+            size_hint_y: 0.6
+            MyButton:
+                text: "CHOOSE A PATCH"
+            MyButton:
+                text: "UPLOAD PATCH"

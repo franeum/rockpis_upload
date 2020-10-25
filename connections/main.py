@@ -10,12 +10,17 @@ def get_raw_connections():
     res = subprocess.check_output(["nmcli","-g","IN-USE,SSID,CHAN,RATE,SIGNAL,BARS,SECURITY","dev","wifi"])
     res = res.decode('utf-8')
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 40b9f77378f05baff5b4a0467735521d33ded728
     f = StringIO(res)
     prova = pd.read_csv(f, sep=':', header=None) #
     prova.columns = ['CONNECTED','SSID','CHAN','RATE','SIGNAL','BARS','SECURITY']
 
     prova.index = prova.index + 1
     prova['levels'] = prova['BARS'].apply(lambda x: 4 - x.count('_'))
+<<<<<<< HEAD
     prova['levels'] = prova['levels'].map({1: Fore.BLUE, 2: Fore.YELLOW, 3: Fore.CYAN, 4: Fore.GREEN})
     return prova 
 
@@ -25,15 +30,26 @@ def get_default(clean):
     default = list(default)[0][0]
     return default """
     default = clean[clean['CONNECTED'] == '*'].index
+=======
+    prova['levels'] = prova['levels'].map({0: Fore.WHITE, 1: Fore.BLUE, 2: Fore.YELLOW, 3: Fore.GREEN, 4: Fore.GREEN})
+
+    return prova 
+
+def get_default(clean):
+    default = clean[clean['CONNECTED'] == '*'].index 
+>>>>>>> 40b9f77378f05baff5b4a0467735521d33ded728
     return default 
 
 
 def build_menu(clean):
+<<<<<<< HEAD
     """for n, x in enumerate(clean):
         if x[1] == 1:
             print(f"{n+1}.\t{x[0]}\t(*)")
         else:
             print(f"{n+1}.\t{x[0]}")"""
+=======
+>>>>>>> 40b9f77378f05baff5b4a0467735521d33ded728
     a_string = clean.iloc[:,:-1].to_string()
     splitted = a_string.split("\n")
 
@@ -41,16 +57,14 @@ def build_menu(clean):
 
     for n,s in enumerate(splitted[1:]):
         dim = len(str(n+1))
-        #print(prova['levels'][n+1])
         new.append(s[:dim] + clean['levels'][n+1] + s[dim:] + Fore.RESET)
 
     print(splitted[0])
     print("\n".join(new))
 
-
 def choose_network(clean, default):
     while True:
-        number = input(f"\nchoose a network (1-{clean.shape[0]}) (default: {default.values[0]})\t>> ")
+        number = input(f"\nchoose a network (1-{clean.shape[0]}) [{clean['SSID'][default].to_string()}] >> ")
         try:
             if number == '':
                 #print('default:',default.values[0])
@@ -63,9 +77,8 @@ def choose_network(clean, default):
             True 
     return clean.loc[number]['SSID']
 
-
 def password(choosen): 
-    password = input(f"insert passphrase for {choosen}\t>> ")
+    password = input(f"insert passphrase for {choosen} >> ")
     return password
 
 
@@ -84,13 +97,8 @@ def send_data_to_rockpis(net, passwd):
 
 
 if __name__ == '__main__':
-    while True:
-        clean = get_raw_connections()
-        default = get_default(clean)
-        build_menu(clean)
-        choosen = choose_network(clean, default)
-        pwd = password(choosen)
-        if verify(choosen, pwd):
-            break 
-        
-    send_data_to_rockpis(choosen, password)
+    clean = get_raw_connections()
+    default = get_default(clean)
+    build_menu(clean)
+    choosen = choose_network(clean, default)
+    password(choosen)
